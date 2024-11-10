@@ -1,0 +1,375 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{booktabs} 
+\usepackage{amsmath}
+\usepackage{xcolor}
+% \documentclass[12pt,letterpaper, onecolumn]{exam}
+% \documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{graphicx}
+\newtheorem{question}{Question}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+% \chead{\hline} % Un-comment to draw line below header
+% \thispagestyle{empty}   %For removing header/footer from page 1
+% \geometry{a4paper, margin=1in}
+% \title{Laboratory Work 1: Diode}
+\date{08.11.2023 }
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \includegraphics[width=1\textwidth]{1.png} 
+    \vspace{1cm}
+    \large{\textbf{School of Information Technology and Engineering}}\\
+    \vspace{2cm}
+    \vspace{2cm}
+    \huge{\rmfamily{\textbf{{Home work №1}}}}\\
+    \vspace{2cm}
+    \vspace{2cm}
+    \vspace{2cm}
+    \raggedleft
+    \Large{Done by: \textbf{Kasym Talgat}}\\
+    \Large{Checked by: \textbf{Sergei Lytkin}}\\
+    \centering
+    \vspace{2cm}
+    \vspace{2cm}
+    \large{Almaty 2024}\\
+    \vfill
+\end{titlepage}
+
+\section{Task 1.1 (1 point)}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{2.png}
+\end{figure}
+
+\[
+\left[
+\begin{array}{c|cccc}
+    & \textcolor{red}{1} & \textcolor{red}{2} & \dots & \textcolor{red}{n} \\
+\hline
+\textcolor{green}{1} & a_{11} & a_{12} & \dots & a_{1n} \\
+\textcolor{green}{2} & a_{21} & a_{22} & \dots & a_{2n} \\
+\textcolor{green}{3} & a_{31} & a_{32} & \dots & a_{3n} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+\textcolor{green}{m} & a_{m1} & a_{m2} & \dots & a_{mn} \\
+\end{array}
+\right]
+\hspace{1cm}
+\left[
+\begin{array}{c|cccc}
+    & \textcolor{red}{1} & \textcolor{red}{2} & \dots & \textcolor{red}{m} \\
+\hline
+\textcolor{green}{1} & b_{11} & b_{12} & \dots & b_{1m} \\
+\textcolor{green}{2} & b_{21} & b_{22} & \dots & b_{2m} \\
+\textcolor{green}{3} & b_{31} & b_{32} & \dots & b_{3m} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+\textcolor{green}{n} & b_{n1} & b_{n2} & \dots & b_{nm} \\
+\end{array}
+\right]
+\]
+\large{\sffamily{1)}} We multiply A and B and get new matrix with m rows and m columns\\
+\large{\sffamily{2)}} We multiply B and A and get new matrix with n rows and n columns\\
+% Diagonal elements of AB (m x m)
+\[
+AB = 
+\left[
+\begin{array}{c|cccc}
+    & \textcolor{red}{1} & \textcolor{red}{2} & \dots & \textcolor{red}{m} \\
+\hline
+\textcolor{green}{1} & a_{11}b_{11} + \dots + a_{1n}b_{n1} & \dots & \dots & \dots \\
+\textcolor{green}{2} & \dots & a_{21}b_{12} + \dots + a_{2n}b_{n2} & \dots & \dots \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+\textcolor{green}{m} & \dots & \dots & \dots & a_{m1}b_{1m} + \dots + a_{mn}b_{nm} \\
+\end{array}
+\right]
+\]
+
+% Diagonal elements of BA (n x n)
+\[
+BA = 
+\left[
+\begin{array}{c|cccc}
+    & \textcolor{red}{1} & \textcolor{red}{2} & \dots & \textcolor{red}{n} \\
+\hline
+\textcolor{green}{1} & b_{11}a_{11} + \dots + b_{1m}a_{m1} & \dots & \dots & \dots \\
+\textcolor{green}{2} & \dots & b_{21}a_{12} + \dots + b_{2m}a_{m2} & \dots & \dots \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+\textcolor{green}{n} & \dots & \dots & \dots & b_{n1}a_{1n} + \dots + b_{nm}a_{mn} \\
+\end{array}
+\right]
+\]
+\large{\sffamily{3)}} The trace of a square matrix A, denoted as tr(A), is the sum of the elements on its main diagonal (the diagonal from the top-left to the bottom-right of the matrix).\\
+\large{\sffamily{1)}} $tr(AB)  =  a_{11}b_{11} + \dots + a_{1n}b_{n1} + a_{21}b_{12} + \dots + a_{2n}b_{n2} + a_{m1}b_{1m} + \dots + a_{mn}b_{nm}$\\
+\large{\sffamily{1)}} $tr(BA)  =  b_{11}a_{11} + \dots + b_{1m}a_{m1} + b_{21}a_{12} + \dots + b_{2m}a_{m2} + b_{n1}a_{1n} + \dots + b_{nm}a_{mn}$\\\\
+We can observe a pattern: the sum of the first elements of each row of AB is equal to the sum of the first column of BA, and the same applies to the other elements.\\
+\\
+\large{\sffamily{4)}} Let u and v be vectors with n elements and we know that u and v orthogonal. Orthogonal means that their dot product is equal to zero.\\
+\\
+$u_1v_1 + u_2v_2 + \dots + u_n v_n = 0$\\
+$\sum_{i=1}^{n} u_i v_i = 0$\\
+\\
+\large{\sffamily{5)}} $v^T$ has 1 row and n columns.\\
+\large{\sffamily{6)}} Multiplying u and $v^T$ gives us matrix with 1 row and 1 column. And that cell will be equal to dot product of v and u, which means zero. That means tr($uv^T$) = 0\\
+
+
+
+
+\section{Task 1.2 (1 point)}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{3.png}
+\end{figure}
+
+\begin{enumerate}
+    \item \textbf{First, show that \( N(A) \subseteq N(A^T A) \):}
+    \begin{itemize}
+        \item If \( x \in N(A) \), then \( A x = 0 \).
+        \item Now apply \( A^T A \) to \( x \):
+        \[
+        A^T A x = A^T (A x) = A^T (0) = 0
+        \]
+        \item This shows \( x \in N(A^T A) \), so \( N(A) \subseteq N(A^T A) \).
+    \end{itemize}
+
+    \item \textbf{Now, show that \( N(A^T A) \subseteq N(A) \):}
+    \begin{itemize}
+        \item If \( x \in N(A^T A) \), then \( A^T A x = 0 \).
+        \item Multiply both sides by \( x^T \):
+        \[
+        x^T A^T A x = 0
+        \]
+        \item This simplifies to:
+        \[
+        \|A x\|^2 = 0
+        \]
+        \item Since the norm of a vector is zero only if the vector itself is zero, we conclude \( A x = 0 \), meaning \( x \in N(A) \).
+    \end{itemize}
+
+    \item \textbf{Conclusion:} \\
+    Since \( N(A) \subseteq N(A^T A) \) and \( N(A^T A) \subseteq N(A) \), we have:
+    \[
+    N(A) = N(A^T A)
+    \]
+\end{enumerate}
+
+
+\section{Task 1.3 (0.5 point)}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{4.png}
+\end{figure}
+Two matrices $A$ and $B$ are called similar if there exists an invertible matrix $P$ such that:
+\[
+B = P^{-1}AP
+\]
+
+\section*{Rules that we use}
+\begin{enumerate}
+    \item $\det(AB) = \det(A)\det(B)$ for any two square matrices $A$ and $B$.
+    \item $\det(P^{-1}) = \frac{1}{\det(P)}$ for any invertible matrix $P$.
+\end{enumerate}
+
+
+Now, using the fact that $B = P^{-1}AP$, let's compute $\det(B)$:
+\[
+\det(B) = \det(P^{-1}AP)
+\]
+
+Using the property of determinants for a product of matrices:
+\[
+\det(B) = \det(P^{-1})\det(A)\det(P)
+\]
+
+Now, applying the second property, $\det(P^{-1}) = \frac{1}{\det(P)}$:
+\[
+\det(B) = \left(\frac{1}{\det(P)}\right)\det(A)\det(P)
+\]
+
+The terms $\frac{1}{\det(P)}$ and $\det(P)$ cancel out, leaving:
+\[
+\det(B) = \det(A)
+\]
+
+
+\section{Task 1.4 (Sherman—Morrison formula, 1.5 points)}
+The task asks to prove the Sherman–Morrison formula:
+
+\[
+(A + uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1} u}
+\]
+where \( A \in \mathbb{R}^{n \times n} \) is an invertible matrix, \( u, v \in \mathbb{R}^n \), and \( v^T A^{-1} u \neq -1 \).
+
+\section{Proof Outline:}
+
+The Sherman–Morrison formula provides a way to compute the inverse of a rank-1 update to an invertible matrix \( A \), i.e., the inverse of \( A + uv^T \). To prove this, we proceed as follows:
+
+\subsection*{Step 1: Start with the inverse expression}
+We seek to prove that:
+\[
+(A + uv^T)\left(A^{-1} - \frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1} u}\right) = I
+\]
+where \( I \) is the identity matrix.
+
+\subsection*{Step 2: Expand the left-hand side}
+Multiply the two terms on the left-hand side:
+\[
+(A + uv^T)\left(A^{-1} - \frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1} u}\right)
+\]
+First, distribute \( A + uv^T \) over both terms inside the parentheses.
+
+- For the first term:
+  \[
+  (A + uv^T)A^{-1} = AA^{-1} + uv^T A^{-1} = I + uv^T A^{-1}
+  \]
+  
+- For the second term:
+  \[
+  (A + uv^T)\left(-\frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1} u}\right)
+  \]
+  Break this into two parts:
+  \[
+  A \left(-\frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1} u}\right) = -\frac{uv^T A^{-1}}{1 + v^T A^{-1} u}
+  \]
+  and
+  \[
+  uv^T \left(-\frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1} u}\right) = -\frac{uv^T A^{-1} u v^T A^{-1}}{1 + v^T A^{-1} u}
+  \]
+
+\subsection*{Step 3: Combine the terms}
+Now, combining all the results:
+\[
+I + uv^T A^{-1} - \frac{uv^T A^{-1}}{1 + v^T A^{-1} u} - \frac{uv^T A^{-1} u v^T A^{-1}}{1 + v^T A^{-1} u}
+\]
+Notice that the first two terms involving \( uv^T A^{-1} \) can be simplified:
+\[
+uv^T A^{-1}\left(1 - \frac{1}{1 + v^T A^{-1} u}\right)
+\]
+Simplifying the term inside the parentheses:
+\[
+1 - \frac{1}{1 + v^T A^{-1} u} = \frac{v^T A^{-1} u}{1 + v^T A^{-1} u}
+\]
+So the expression becomes:
+\[
+I + \frac{uv^T A^{-1} (v^T A^{-1} u)}{1 + v^T A^{-1} u} - \frac{uv^T A^{-1} u v^T A^{-1}}{1 + v^T A^{-1} u}
+\]
+These two terms involving \( uv^T A^{-1} u \) cancel out, leaving:
+\[
+I
+\]
+
+\subsection*{Conclusion}
+We have shown that:
+\[
+(A + uv^T)\left(A^{-1} - \frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1} u}\right) = I
+\]
+Thus, the inverse of \( A + uv^T \) is indeed:
+\[
+(A + uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1} u}
+\]
+as required.
+
+
+\section{Task 1.5 (programming, 1.5 points)}
+
+\large{\sffamily{Apply k-NN algorithm to MNIST dataset and measure its performance:
+\\
+}}
+\begin{itemize}
+    \item Split the dataset into train and test parts.
+    \item Train several models with different hyperparameters (take $1 \leq k \leq 20$ and different distance metrics ($p = 1$, $p = 2$, $p = +\infty$)).
+    \item Visualize several test samples and their predictions (see code below).
+    \item Plot train and test accuracies for each model on the same graph.
+    \item Find a model with the best test accuracy.
+\end{itemize}
+\large{\sffamily{To split a dataset into training and testing subsets, we commonly use the train\_test\_split function from libraries like scikit-learn in Python. This function randomly divides the data into two parts: one for training the model and the other for testing its performance.
+\\
+}}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{code.png}
+\end{figure}
+\newpage
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{code2.png}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1.5.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{1.5.2.png}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{p=1.png}
+    \caption{p=1}
+    \label{fig:subfiga}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{p=2.png}
+    \caption{p=2}
+    \label{fig:subfigb}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{p=inf.png}
+    \caption{p=inf}
+    \label{fig:subfigc}
+  \end{subfigure}
+  \caption{Train and test accuracies}
+\end{figure}
+\newpage
+\section{Task 1.6 (programming, 1.5 points)}
+\large{\sffamily{Compare the performance of different algorithms for calculation matrix product\\
+}}
+% \newpage
+
+First of all we should write 4 function loops for calculating sum of diagonals \[
+C_{ik} = \sum_{j=1}^{n} A_{ij} B_{jk}
+\] mat\_mul\_loop, mat\_mul\_inner, mat\_mul\_outer and A@B \\
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{16c1.png}
+\end{figure}
+Then we test our functions for returning the same result:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{16c2.png}
+\end{figure}
+Testing each function using timeit\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{image.png}
+\end{figure}
+And finally we visualize it on graph:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{16.png}
+\end{figure}
+\newpage
+\section{Conclusion}
+\large{\sffamily{
+Overall, by using NumPy, developers can save time in both development and execution, making it an essential tool for data analysis, scientific computing, and machine learning in Python.\\
+}}
+\end{document}
